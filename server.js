@@ -1,3 +1,4 @@
+//Bootcamp Assignment 1 Caroline Hobson
 var http = require('http'),
     fs = require('fs'),
     url = require('url'),
@@ -14,32 +15,27 @@ var requestHandler = function(request, response) {
   if( parsedUrl.pathname == '/listings' && request.method == 'GET'){
     response.writeHead(200, {'Content-Type': 'application/json'});
     response.end(listingData);
-    //response.end();
   }
   else{
     //the 404 error will be sent with error text
     response.writeHead(404, {'Content-Type': 'text/plain'});
     response.end('Bad gateway error');
-    //response.end();
   }
 
 };
 
 fs.readFile('listings.json', 'utf8', function(err, data) {
   /*
-    This callback function should save the data in the listingData variable,
-    then start the server.
-
-   */
-
-    //Check for errors
-    if(err){
-      throw err;
-    }
-
+      This callback function should save the data in the listingData variable,
+      then start the server.
+  */
+  //Check for errors
+  if(err){
+    throw err;
+  }
 
    //Save the data in the listingData variable already defined
-   listingData = data;
+  listingData = data;
 
   //Creates the server
   var server = http.createServer(requestHandler);
